@@ -29,6 +29,7 @@ gem 'mongoid'
 gem 'cancan'
 gem 'activeadmin-cancan'
 gem 'meta_search'
+gem 'thin'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
