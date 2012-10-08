@@ -1,0 +1,16 @@
+<h1>Categoria#show</h1>
+
+<b>Detalles de la categoria</b>
+<br />
+<br />
+<i>Nombre: </i><%= @categoria_detail.nombre %><br />
+<i>Descripcion : </i><%= @categoria_detail.descripcion %><br />
+<br />
+<br />
+<b>Eventos relacionados: </b><br />
+
+<ul>
+	<%  @eventos_categoria.each do |eca |%>
+		<li><%= link_to eca.nombre, evento_detail_path(:id => eca.id) %></li>	
+	<% end %>
+</ul>

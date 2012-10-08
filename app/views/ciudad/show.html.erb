@@ -1,0 +1,14 @@
+<h1>Ciudades#show</h1>
+
+<h3><%= @ciudad_detail.nombre %></h3>
+<b>Detalles de la ciudad</b><br/><br />
+Latitud: <%= @ciudad_detail.latitud%><br />
+Longitud: <%= @ciudad_detail.longitud%><br /><br />
+<i>Mapa aqui</i><br />
+<br />
+<b>Evento relacionados</b><br />
+<% @eventos_ciudad.each do |ec| %><br />
+<%= link_to ec.nombre, evento_detail_path(:id => ec.id)  %>
+<% end %>
+
+

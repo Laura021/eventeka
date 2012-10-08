@@ -1,0 +1,18 @@
+<h1>Calendario#index</h1>
+
+<b> <%= @fecha_base.fecha.to_date %></b><br />
+
+<% @eventos_fecha.each do |evento|%>
+
+	<%if @fecha_base.fecha.to_date == evento.fecha.to_date %>
+		<%= link_to evento.nombre, evento_detail_path(:id => evento.id) %><br />
+	<%else %>
+		<br />
+		<b><%= evento.fecha.to_date %></b><br />
+		<%= link_to evento.nombre, evento_detail_path(:id => evento.id) %><br />
+		<% @fecha_base = evento %>
+		
+	<% end %>
+	
+
+<% end %>

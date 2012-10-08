@@ -1,0 +1,51 @@
+<style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 50% }
+</style>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD8gL6_aJgnL_j24LpiIMk-OTBSRIot9K4&sensor=false" ></script>
+
+
+<h1>Aplicación para eventos con javascript</h1><br />
+<% @guardar = request.fullpath %>
+Estoy en la url<%= @guardar %>
+
+<h3><%= Date.today %></h3>
+<br />
+<br />
+<div id="panel-izq">
+	Panel izquierdo
+	<ul>
+		<li><%= link_to "Ciudades", ciudades_path %></li>
+		<li><%= link_to "Eventos", eventos_list_path %></li>
+		<li><%= link_to "Categorias", categorias_path %></li>
+		<li><%= link_to "Fechas/Calendario", fechas_list_path %></li>
+	</ul>
+</div>
+<hr />
+<div id="Panel central" >
+	Panel central
+	
+	<% if current_usuario != nil %>
+		<h3>Conectado</h3>
+		<%= link_to "Agregar evento!", evento_nuevo_path %>
+	<%else %>
+		<h3>Desconectado</h3>
+		
+	<% end %>
+	<br />
+	<br />
+</div>
+
+<hr />
+<div id="panel-derecho">
+	Panel derecho
+	Desplegar info tiempo real de actualizaciones/Eventos pagados
+</div>
+<hr />
+<br />
+Aqui un mapa con toda la actividade GDL<br /><br />
+
+<div id="map_canvas" style="width:50%; height:50%; border: 5px solid">
+</div>
+

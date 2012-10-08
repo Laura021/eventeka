@@ -1,0 +1,36 @@
+<style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 50% }
+</style>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD8gL6_aJgnL_j24LpiIMk-OTBSRIot9K4&sensor=false" ></script>
+
+
+<h1>Fact#show</h1>
+
+
+<b>Nombre:  </b> <%= @eventos_detail.nombre %><br /><br />
+<b>Descripcion:</b> <%= @eventos_detail.descripcion %><br /><br />
+<b>Fecha:</b> <%= @eventos_detail.fecha%><br /><br />
+<b>Lugar: </b><%= @eventos_detail.ciudad.nombre %><br /><br />
+<i>Más detalles del evento...</i>
+<br />
+<br />
+
+Mapa:<br /><br />
+<div id="map_canvas" style="width:50%; height:50%; border: 5px solid"></div>
+<br /><br /><br />
+Rating: 0/5 estrellas
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		var latitud  = <%= @eventos_detail.latitud %>;
+		var longitud = <%= @eventos_detail.longitud %>;
+		
+		//initialize();
+		cargarMapa(latitud, longitud);
+		console.log(latitud +","+ longitud);
+	});
+
+</script>
