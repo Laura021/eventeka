@@ -2,3 +2,8 @@
 <h2>Perfil del usuario</h2>
 <br />
 <%= @usuario_detail.email %>
+<br />
+<br />
+<% @eventos_usuario.each do |e|%>
+<%= link_to e.nombre,evento_detail_path(:id => e.id) %><br />
+<% end %>

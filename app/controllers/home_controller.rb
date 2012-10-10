@@ -5,7 +5,9 @@ class HomeController < ApplicationController
    
   end
   
-  
+  def sugerencias
+    
+  end
 
 
 

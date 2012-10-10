@@ -26,7 +26,7 @@ Consola::Application.routes.draw do
   match "perfil/:id" => "usuario#show", :as => :usuario_profile
 
   match "fechas" => "calendario#index", :as => :fechas_list
-  
+  match "sugerencias" => "home#sugerencias", :as=> :sugerencias_page
   
   match "servicios/categoria" =>"servicios#listado_categorias"
   match "servicios/categoria_detail" => "servicios#catego_detail"
@@ -38,6 +38,8 @@ Consola::Application.routes.draw do
   match "servicios/evento_detail" => "servicios#consulta_evento"
  
   match "servicios/usuario_info" => "servicios#info_usuario"
+  
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

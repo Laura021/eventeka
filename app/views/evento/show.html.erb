@@ -6,8 +6,10 @@
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD8gL6_aJgnL_j24LpiIMk-OTBSRIot9K4&sensor=false" ></script>
 
 
-<h1>Fact#show</h1>
-
+<h1>Fact#show</h1><br />
+<% if @eventos_detail.usuario_id == current_usuario.id %>
+<button>Administrar</button><br /><br />
+<%end %>
 
 <b>Nombre:  </b> <%= @eventos_detail.nombre %><br /><br />
 <b>Descripcion:</b> <%= @eventos_detail.descripcion %><br /><br />
