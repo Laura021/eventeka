@@ -7,9 +7,13 @@
 
 
 <h1>Fact#show</h1><br />
-<% if @eventos_detail.usuario_id == current_usuario.id %>
-<button>Administrar</button><br /><br />
+
+<%if  current_usuario != nil%>
+	<% if (@eventos_detail.usuario_id == current_usuario.id) %>
+	<button>Administrar</button><br /><br />
+	<%end %>
 <%end %>
+
 
 <b>Nombre:  </b> <%= @eventos_detail.nombre %><br /><br />
 <b>Descripcion:</b> <%= @eventos_detail.descripcion %><br /><br />

@@ -13,20 +13,25 @@ Consola::Application.routes.draw do
  
   get "evento/nuevo"
   get "evento/create"
-  
+
   match "eventos/list" =>"evento#index"
   match "eventos/" => "evento#create"
   match "eventos/nuevo" => "evento#nuevo"
   match "eventos/:id"=> "evento#show", :as => :evento_detail
 
+  get "sugerencia/nuevo"
+  get "sugerencia/create"
   
+  match "sugerencia/index" => "sugerencia#index"
+  match "sugerencia/" =>"sugerencia#create"
+  match "sugerencia/nuevo" => "sugerencia#nuevo"
+
   match "categorias" => "categoria#index"
   match "categotias/:id" => "categoria#show", :as => :categoria_detail
   
   match "perfil/:id" => "usuario#show", :as => :usuario_profile
 
   match "fechas" => "calendario#index", :as => :fechas_list
-  match "sugerencias" => "home#sugerencias", :as=> :sugerencias_page
   
   match "servicios/categoria" =>"servicios#listado_categorias"
   match "servicios/categoria_detail" => "servicios#catego_detail"

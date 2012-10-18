@@ -1,0 +1,16 @@
+<h1>Sugerencia#nuevo</h1>
+Si no necesitas un campo, dejalo en blanco*
+
+<%=form_for @sugerencia ,:action  =>"sugerencia_create_path",:html => { :method =>"get"}  do |s|%>
+
+	<%=s.label :categoria%>
+	<%=s.text_field :categoria%><br /><br />
+	
+	<%=s.label :ciudad %>
+	<%=s.text_field :ciudad%><br /><br />
+	
+	<%=s.label :texto%>
+	<%=s.text_field :texto%><br /><br />
+	
+	<%=s.submit%>
+<%end %>
