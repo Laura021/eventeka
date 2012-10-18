@@ -19,7 +19,7 @@ $(document).ready(function(){
 	if(where == '/' )
 	{
 		//Aquie se hace la 1er localizacion del usuario.
-		alert("INDEX");
+		initialize();
 		localizarUser();
 		
 	}
@@ -106,9 +106,8 @@ var browserSupportFlag =  new Boolean();
 
 function localizarUser()
 {
-	alert("Localizando");
 	var myOptions = {
-    zoom: 10,
+    zoom: 15,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   	};
   	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
