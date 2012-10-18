@@ -1,5 +1,5 @@
 class ServiciosController < ApplicationController
-  
+  respond_to :json
   #Clase con todos los servicios que consumir{a la app de iPhone!
   
   def index
@@ -11,18 +11,14 @@ class ServiciosController < ApplicationController
   def listado_categorias
     @categos =  Categoria.all
     
-    respond_to do |format|
-      format.json {render json: @categos.to_json}
-    end 
+    respond_with(@categos)
     
   end
   
   def catego_detail
     @catego_detail =  Categoria.find(params[:id])
     
-    respond_to do |format|
-      format.json {render json: @catego_detail.to_json}
-    end 
+     respond_with(@catego_detail)
   end
   
   #########    Ciudad   #########
@@ -30,18 +26,13 @@ class ServiciosController < ApplicationController
   def listado_ciudad
     @ciudades = Ciudad.all
     
-    respond_to do |format|
-      format.json {render json: @ciudades.to_json}
-    end 
-    
+    respond_with(@ciudades)
   end
   
   def consulta_ciudad
     @ciudad_detail = Ciudad.find(params[:id])
     
-    respond_to do |format|
-      format.json {render json: @ciudad_detail.to_json}
-    end 
+    respond_with(@ciudad_detail)
   end 
   
   #########   Evento    #########
@@ -49,17 +40,13 @@ class ServiciosController < ApplicationController
   def listado_evento
     @eventos = Evento.all
     
-    respond_to do |format|
-      format.json {render json: @eventos.to_json}
-    end 
+    respond_with(@eventos)
   end
   
   def consulta_evento
    @evento_detail = Evento.find(params[:id])
    
-   respond_to do |format|
-      format.json {render json: @evento_detail.to_json}
-   end 
+   respond_with(@evento_detail)
   end
   
   
@@ -68,9 +55,7 @@ class ServiciosController < ApplicationController
   def info_usuario
    @usuario = current_usuario
     
-   respond_to do |format|
-      format.json {render json: @usuario.to_json}
-   end 
+    respond_with(@usuario)
   end
   
   
