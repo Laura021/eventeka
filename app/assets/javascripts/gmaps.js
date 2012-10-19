@@ -7,10 +7,6 @@ var map;
 var marker;
 var position = [];
 
-
-
-
-
 $(document).ready(function(){ 
 	//Cuando termine de cargar CUALQUIER página,osea se ejecuta SIEMPRE
 	
@@ -20,7 +16,8 @@ $(document).ready(function(){
 	{
 		//Aquie se hace la 1er localizacion del usuario.
 		initialize();
-		localizarUser();
+		fromIPLocation();
+		//localizarUser();
 		
 	}
 	if(where == '/evento/nuevo')
@@ -82,7 +79,7 @@ function cargarMapa(lat, lon)
 	
 	 mapOptions = {
           center: new google.maps.LatLng(lat, lon),
-          zoom: 15,
+          zoom: 13,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
          map = new google.maps.Map(document.getElementById("map_canvas"),
@@ -100,8 +97,7 @@ function cargarMapa(lat, lon)
 
 // Codigo para localizar al usuario via browser.
 var initialLocation;
-var siberia = new google.maps.LatLng(60, 105);
-var newyork = new google.maps.LatLng(40.69847032728747, -73.9514422416687);
+
 var browserSupportFlag =  new Boolean();
 
 function localizarUser()
@@ -117,7 +113,10 @@ function localizarUser()
     	browserSupportFlag = true;
     	navigator.geolocation.getCurrentPosition(function(position) {
       	initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-      	map.setCenter(initialLocation);
+      	//console.log("Latitud: " + position.coords.latitude);
+      	//console.log("Longitud: " + position.coords.longitude);
+      	cargarMapa(position.coords.latitude,position.coords.longitude);
+      	//map.setCenter(initialLocation);
     	}, function() {
       	handleNoGeolocation(browserSupportFlag);
     	});
@@ -129,6 +128,8 @@ function localizarUser()
 	
 	function handleNoGeolocation(errorFlag) 
 	{
+		var siberia = new google.maps.LatLng(60, 105);
+		var newyork = new google.maps.LatLng(40.69847032728747, -73.9514422416687);
     	if (errorFlag == true) 
     	{
       		alert("Geolocation service failed.");
@@ -144,3 +145,8 @@ function localizarUser()
 
 	
 }//fin de localizacion
+
+function fromIPLocation()
+{
+	
+}

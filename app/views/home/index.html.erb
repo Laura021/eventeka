@@ -4,11 +4,37 @@
       #map_canvas { height: 50% }
 </style>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD8gL6_aJgnL_j24LpiIMk-OTBSRIot9K4&sensor=false" ></script>
+<script type="text/javascript">
+$(document).ready(function()
+{ 
+	var lat = "null", lon = "null", ciudad="null";
+	var direccion = "http://smart-ip.net/geoip-json?callback=?";
+	//console.log("Valor: " + direccion);
+	
+	$.getJSON(direccion,function(json)
+	{
+		//console.log("Hello there")
+		//console.log(json);
+		 lat =  json.latitude;
+		 lon =  json.longitude;
+		 ciudad= json.city;		
+		ponerCiudad(ciudad)
+		cambiaCiudad(lat,lon);
+	});// fin del get
+	
+	function ponerCiudad(nombre)
+	{
+		$("#ciudad").append(nombre);
+	}
+	
+})
 
+</script>
 
 <h1>Aplicación para eventos con javascript</h1><br />
-<% @guardar = request.fullpath %>
-Estoy en la url<%= @guardar %>
+
+<div id="ciudad" name="ciudad" > Tu ciudad es: </div><button onclick="localizarUser()">No?</button><br />
+
 
 <h3><%= Date.today %></h3>
 <br />
@@ -48,4 +74,6 @@ Aqui un mapa con toda la actividade GDL<br /><br />
 
 <div id="map_canvas" style="width:50%; height:50%; border: 5px solid">
 </div>
+
+
 
