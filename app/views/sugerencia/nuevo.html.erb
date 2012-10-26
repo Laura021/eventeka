@@ -1,7 +1,7 @@
 <h1>Sugerencia#nuevo</h1>
 Si no necesitas un campo, dejalo en blanco*
 
-<%=form_for @sugerencia ,:action  =>"sugerencia_create_path",:html => { :method =>"get"}  do |s|%>
+<%=form_for @sugerencia ,:html => { :method =>"get"}, :url => "create" do |s|%>
 
 	<%=s.label :categoria%>
 	<%=s.text_field :categoria%><br /><br />

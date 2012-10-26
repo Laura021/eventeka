@@ -13,11 +13,17 @@ Consola::Application.routes.draw do
  
   get "evento/nuevo"
   get "evento/create"
+  #get "evento/editar"
 
   match "eventos/list" =>"evento#index"
   match "eventos/" => "evento#create"
   match "eventos/nuevo" => "evento#nuevo"
   match "eventos/:id"=> "evento#show", :as => :evento_detail
+  match "eventos/eliminar/:id" => "evento#eliminar", :as => :eventos_eliminar
+  match "eventos/:id/editar" =>"evento#editar", :as => :eventos_editar
+  
+  
+  match "eventos/:id/update" =>"evento#update", :as => :evento_update
 
   get "sugerencia/nuevo"
   get "sugerencia/create"
@@ -44,7 +50,7 @@ Consola::Application.routes.draw do
  
   match "servicios/usuario_info" => "servicios#info_usuario"
   
-  
+  match "servicios/ciudad_evento" =>"servicios#ciudad_eventos"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

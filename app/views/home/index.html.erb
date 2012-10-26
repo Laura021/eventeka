@@ -4,37 +4,9 @@
       #map_canvas { height: 50% }
 </style>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD8gL6_aJgnL_j24LpiIMk-OTBSRIot9K4&sensor=false" ></script>
-<script type="text/javascript">
-$(document).ready(function()
-{ 
-	var lat = "null", lon = "null", ciudad="null";
-	var direccion = "http://smart-ip.net/geoip-json?callback=?";
-	//console.log("Valor: " + direccion);
-	
-	$.getJSON(direccion,function(json)
-	{
-		//console.log("Hello there")
-		//console.log(json);
-		 lat =  json.latitude;
-		 lon =  json.longitude;
-		 ciudad= json.city;		
-		ponerCiudad(ciudad)
-		cambiaCiudad(lat,lon);
-	});// fin del get
-	
-	function ponerCiudad(nombre)
-	{
-		$("#ciudad").append(nombre);
-	}
-	
-})
 
-</script>
 
 <h1>Aplicación para eventos con javascript</h1><br />
-
-<div id="ciudad" name="ciudad" > Tu ciudad es: </div><button onclick="localizarUser()">No?</button><br />
-
 
 <h3><%= Date.today %></h3>
 <br />
@@ -61,19 +33,74 @@ $(document).ready(function()
 	<% end %>
 	<br />
 	<br />
+	
 </div>
+<br />
+Descubre que esta pasando es tu ciudad! <br />
+<button onclick="localizarUser()">Localizame!</button>
 
+Yo lo escojo!
+<select id="ciudad-id" onchange="hola()">
+<% @ciudades_list.each do |ca| %>
+	<option value=<%= ca.id %>><%= ca.nombre %></option>
+<% end %>
+</select>
+<div id="map_canvas" style="width:50%; height:50%; border: 5px solid"></div>
+<br />
+<br />
 <hr />
+
+
+
 <div id="panel-derecho">
 	Panel derecho
 	Desplegar info tiempo real de actualizaciones/Eventos pagados
 </div>
-<hr />
+
 <br />
-Aqui un mapa con toda la actividade GDL<br /><br />
+<br />
+<hr />
+<script type="text/javascript">
+$(document).ready(function()
+{ 
+	/*var lat = "null", lon = "null", ciudad="null";
+	var direccion = "http://smart-ip.net/geoip-json?callback=?";
+	//console.log("Valor: " + direccion);
+	
+	$.getJSON(direccion,function(json)
+	{
+		//console.log("Hello there")
+		//console.log(json);
+		 lat =  json.latitude;
+		 lon =  json.longitude;
+		 ciudad= json.city;		
+		ponerCiudad(ciudad)
+		cambiaCiudad(lat,lon);
+	});// fin del get
+	
+	function ponerCiudad(nombre)
+	{
+		$("#ciudad").append(nombre);
+	}*/
 
-<div id="map_canvas" style="width:50%; height:50%; border: 5px solid">
-</div>
+	
+})
 
-
+function hola(){
+	var value = $("#ciudad-id :selected").val();
+	var direccion = '/servicios/ciudad_detail.json?id='+value;
+	var lat = "null", lon = "null";
+	
+	//console.log("Valor: " + direccion);
+	
+	$.getJSON(direccion,function(json)
+	{
+		//console.log(json);
+		var lat =  json.latitud;
+		var lon =  json.longitud;
+		
+		cambiaCiudad(lat,lon);
+	});// fin del get
+}
+</script>
 

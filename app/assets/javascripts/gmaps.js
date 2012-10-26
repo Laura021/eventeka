@@ -5,7 +5,7 @@ var where = window.location.pathname;
 var mapOptions;
 var map;
 var marker;
-var position = [];
+var position2 = [];
 
 $(document).ready(function(){ 
 	//Cuando termine de cargar CUALQUIER página,osea se ejecuta SIEMPRE
@@ -16,7 +16,6 @@ $(document).ready(function(){
 	{
 		//Aquie se hace la 1er localizacion del usuario.
 		initialize();
-		fromIPLocation();
 		//localizarUser();
 		
 	}
@@ -69,9 +68,14 @@ function cambiaCiudad(lat, lon)
 
 function markerPosition()
 {     
-	 position[0] =  marker.getPosition().Xa; //Lat
-     position[1] =  marker.getPosition().Ya; //Log
-     return position;
+	console.log(marker.getPosition());
+
+	
+	 position2[0] =  marker.getPosition().Ya; //Lat
+     position2[1] =  marker.getPosition().Za; //Log
+     
+     //alert("marker position\nLatitud: " + position2[0] + "\nLogitud: " + position2[1]);
+     return position2;
 }
 
 function cargarMapa(lat, lon)
@@ -95,6 +99,26 @@ function cargarMapa(lat, lon)
 
 }
 
+function editarMapa(lat, lon)
+{
+	
+	 mapOptions = {
+          center: new google.maps.LatLng(lat, lon),
+          zoom: 13,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+         map = new google.maps.Map(document.getElementById("map_canvas"),
+            mapOptions);
+            
+         marker =  new google.maps.Marker({
+        	map: map,
+        	position: new google.maps.LatLng(lat,lon),
+        	draggable: true
+        });
+
+	//window.onload=initialize;
+
+}
 // Codigo para localizar al usuario via browser.
 var initialLocation;
 
@@ -146,7 +170,3 @@ function localizarUser()
 	
 }//fin de localizacion
 
-function fromIPLocation()
-{
-	
-}

@@ -1,5 +1,7 @@
 class Evento
   include Mongoid::Document
+  include Mongoid::Timestamps
+  include Mongoid::MultiParameterAttributes
   
   field :nombre, type: String
   field :descripcion, type: String

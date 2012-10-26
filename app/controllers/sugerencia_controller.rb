@@ -6,7 +6,8 @@ class SugerenciaController < ApplicationController
   
   def create
     @sugerencia = Sugerencia.create params[:sugerencia]
-    
+    redirect_to :action => 'index'
+   
   end
     
   def nuevo

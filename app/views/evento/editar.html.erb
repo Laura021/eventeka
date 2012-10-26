@@ -1,0 +1,89 @@
+<style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 50% }
+</style>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD8gL6_aJgnL_j24LpiIMk-OTBSRIot9K4&sensor=false" ></script>
+
+
+<h1>Evento#Editar</h1>
+
+<%= form_for(@evento, :url => eventos_path(@evento) ,:url=>"update" ,:html=> {:method =>"post"}) do |e|%>
+	
+	<%=e.label :nombre %>
+	<%=e.text_field :nombre%><br /><br />
+	
+	<%=e.label :descripcion %>
+	<%=e.text_field :descripcion%><br /><br />
+	
+	<%=e.label :fecha %>
+	<%=e.datetime_select :fecha%><br /><br />
+	
+	
+	<%=e.label :website %>
+	<%=e.text_field :website%><br /><br /> 
+	
+	<%=e.label :categorias %>
+	<%= e.select :categoria_ids, Hash[Categoria.all.map {|ca| [ca.nombre, ca.id]}]%><br /><br />
+	
+	<%= e.label :direccion %>
+	<%= e.text_field :direccion%><br /><br />
+	
+	<%=e.label :ciudad%>
+	<%=e.select :ciudad_id, Hash[Ciudad.all.map {|c| [c.nombre, c.id]}], {:include_blank => false},{ :onchange =>"hola();return false" } %><br /><br />
+
+	<%= e.label "Indica en el mapa:" %><br /><br />
+	<%= e.hidden_field :latitud , :value => 0.0%>
+	<%= e.hidden_field :longitud, :value => 0.0%>
+	<%= e.hidden_field :usuario, :value=> current_usuario.id %>	
+	
+	<%= e.submit%>
+<% end %>
+
+<div id="map_canvas" style="width:50%; height:50%; border: 5px solid"></div>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	var latitud  = <%= @evento.latitud %>;
+	var longitud = <%= @evento.longitud %>;
+		
+	//initialize();
+	editarMapa(latitud, longitud);
+	hola();
+	console.log(latitud +","+ longitud);
+});
+
+function hola()
+{
+	var value = $("#evento_ciudad_id :selected").val();
+	var direccion = '/servicios/ciudad_detail.json?id='+value;
+	var lat = "null", lon = "null";
+	
+	//console.log("Valor: " + direccion);
+	
+	$.getJSON(direccion,function(json)
+	{
+		//console.log(json);
+		var lat =  json.latitud;
+		var lon =  json.longitud;
+		
+		cambiaCiudad(lat,lon);
+	});// fin del get
+}
+
+function verMarker()
+{
+	var dir= markerPosition();
+	
+	$("#evento_latitud").val(dir[0]);
+	$("#evento_longitud").val(dir[1]);
+	
+	console.log($("#evento_latitud").val());
+}
+
+$("form").submit(function(){
+	verMarker();
+});
+</script>
+

@@ -22,6 +22,8 @@ ActiveAdmin.register Evento do
       f.input :fecha
       f.input :direccion
       f.input :website
+      f.input :latitud
+      f.input :longitud
       f.input :usuario, :collection=>Hash[Usuario.all.map {|u| [u.nombre,u.id]}], :include_blank => false
       f.input :ciudad, :collection=>Hash[Ciudad.all.map {|c| [c.nombre, c.id]}], :include_blank => false
       f.input :categorias, :collection =>Hash[Categoria.all.map {|ca| [ca.nombre, ca.id]}], :include_blank =>false

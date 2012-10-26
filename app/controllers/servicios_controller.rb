@@ -58,6 +58,27 @@ class ServiciosController < ApplicationController
     respond_with(@usuario)
   end
   
+  ####### tutifruti ########
+  
+  def ciudad_eventos
+    
+    @ciudad_detail = Ciudad.find(params[:id])
+   
+    @ciudad_id = @ciudad_detail.id
+        
+    @eventos_ciudad = Array.new
+   
+    Evento.each do |evento|  
+      
+      if evento.ciudad_id == @ciudad_id 
+          @eventos_ciudad.push(evento)
+      end       
+   end
+   
+   respond_with(@eventos_ciudad)
+    
+  end
+    
   
   
   

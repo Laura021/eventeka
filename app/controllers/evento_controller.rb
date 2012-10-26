@@ -17,4 +17,27 @@ class EventoController < ApplicationController
     @evento = Evento.new
   end
   
+  def editar
+    @evento = Evento.find(params[:id])
+    
+  end
+  
+  def update
+    @evento = Evento.find(params[:id])
+    @evento.update_attributes(params[:evento])
+    #Evento.find(params[:id]).update_attributes(params[:evento])  
+    
+    #Evento.update params[:evento]
+    redirect_to :action => 'index'
+    
+    
+  end
+  
+  def eliminar
+    @eventos_detail = Evento.find(params[:id])   
+    Evento.find(params[:id]).delete
+    redirect_to :action => 'index'
+  end
+    
+  
 end

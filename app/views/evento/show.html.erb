@@ -10,7 +10,9 @@
 
 <%if  current_usuario != nil%>
 	<% if (@eventos_detail.usuario_id == current_usuario.id) %>
-	<button>Administrar</button><br /><br />
+	Administrar:<br />
+	<%=link_to "Editar", eventos_editar_path%><br />
+	<%=link_to "Eliminar", eventos_eliminar_path%><br />
 	<%end %>
 <%end %>
 
@@ -19,6 +21,8 @@
 <b>Descripcion:</b> <%= @eventos_detail.descripcion %><br /><br />
 <b>Fecha:</b> <%= @eventos_detail.fecha%><br /><br />
 <b>Lugar: </b><%= @eventos_detail.ciudad.nombre %><br /><br />
+<b>Latitud: </b><%= @eventos_detail.latitud %><br /><br />
+<b>Longitud: </b><%= @eventos_detail.longitud %><br /><br />
 <i>Más detalles del evento...</i>
 <br />
 <br />
