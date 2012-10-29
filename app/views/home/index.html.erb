@@ -36,10 +36,11 @@
 	
 </div>
 <br />
-Descubre que esta pasando es tu ciudad! <br />
-<button onclick="localizarUser()">Localizame!</button>
 
-Yo lo escojo!
+<!---Descubre que esta pasando es tu ciudad! <br />
+<button onclick="localizarUser()">Localizame!</button>--->
+
+Vamos a ver!
 <select id="ciudad-id" onchange="hola()">
 <% @ciudades_list.each do |ca| %>
 	<option value=<%= ca.id %>><%= ca.nombre %></option>
@@ -82,7 +83,10 @@ $(document).ready(function()
 	{
 		$("#ciudad").append(nombre);
 	}*/
+	//actualizarEventos("504fad7910cec3dc0d000001");
 
+	//Ahora se supone que cuando incie sesion el usaurio no debe mostrar nada hasta que el escoja su ciudad!
+	//¿guardar las preferencias del usuario?
 	
 })
 
@@ -91,7 +95,7 @@ function hola(){
 	var direccion = '/servicios/ciudad_detail.json?id='+value;
 	var lat = "null", lon = "null";
 	
-	//console.log("Valor: " + direccion);
+	//console.log("Valor: " + direccion)
 	
 	$.getJSON(direccion,function(json)
 	{
@@ -101,6 +105,31 @@ function hola(){
 		
 		cambiaCiudad(lat,lon);
 	});// fin del get
+	
+	actualizarEventos(value);
+}
+
+function actualizarEventos(value)
+{
+	var direccion = '/servicios/ciudad_evento.json?id='+value;
+	
+		$.getJSON(direccion,function(json)
+		{	
+			$.each(json,function(i,post)
+			{
+				var lat =  post.latitud;
+				var lon =  post.longitud;
+				console.log(lat +" , "+lon);
+				
+				marker =  new google.maps.Marker({
+        		map: map,
+        		position: new google.maps.LatLng(lat,lon),
+        		draggable: false
+        });
+			});
+		});
+	
+	
 }
 </script>
 

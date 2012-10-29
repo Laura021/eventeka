@@ -6,6 +6,7 @@ var mapOptions;
 var map;
 var marker;
 var position2 = [];
+var markers = []; 
 
 $(document).ready(function(){ 
 	//Cuando termine de cargar CUALQUIER página,osea se ejecuta SIEMPRE
@@ -169,4 +170,30 @@ function localizarUser()
 
 	
 }//fin de localizacion
+
+
+function eventosCiudad(ciudad_id)
+{
+	var direccion = '/servicios/ciudad_evento.json?id='+ciudad_id;
+	var lat = "null", lon = "null";
+	var i=0;
+	console.log("Valor: " + direccion);
+	
+	$.getJSON(direccion,function(json)
+	{
+		console.log(json);
+		var lat =  json.latitud;
+		var lon =  json.longitud;
+		
+		marker =  new google.maps.Marker({
+        	map: map,
+        	position: new google.maps.LatLng(lat,lon),
+        	draggable: false
+        });
+		
+		console.log(lat +", "+ lon);
+		
+	});// fin del get
+	
+}
 
