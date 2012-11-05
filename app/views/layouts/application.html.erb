@@ -2,38 +2,77 @@
 <html>
 <head>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-  <title>Consola</title>
+  <title>Eventeka</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
-<div id="container">
-	
-	<div style="float: left">
-		<%=link_to "Home", root_path %>
-	</div>
-	<div id="user_nav">
-	<% if current_usuario != nil %>
-		<%= link_to current_usuario.email, usuario_profile_path(current_usuario.id) %><br />
-		<%= link_to "LogOut", destroy_usuario_session_path, :method => :delete%>
+<div class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      
+      <a class="btn btn-navbar " data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+     
+      <div class="brand"><%=link_to "Eventeka", root_path %></div>
+   
+         <div class="navbar-search pull-right">
+         	
+         	<% if current_usuario != nil %>
+				<%= link_to current_usuario.email, usuario_profile_path(current_usuario.id) %>
+				<div class="btn"><%= link_to "LogOut", destroy_usuario_session_path, :method => :delete%></div>
 
-	<% else %>
-		<%= link_to "Iniciar sesión", new_usuario_session_path %><br />
-		<%= link_to "Registrate", new_usuario_registration_path %>
-	<% end %>
+			<% else %>
+				<div class="btn"><%= link_to "Iniciar sesión", new_usuario_session_path %></div>
+				<div class="btn"><%= link_to "Registrate", new_usuario_registration_path %></div>
+			<% end %>
 		
-	</div>
+		</div>
+      
+      <div class="nav-collapse">
+        <ul class="nav">
+     	<li><%= link_to "Ciudades", ciudades_path %></li>
+		<li><%= link_to "Eventos", eventos_list_path %></li>
+		<li><%= link_to "Categorias", categorias_path %></li>
+		<li><%= link_to "Fechas/Calendario", fechas_list_path %></li>
+        </ul>
+      </div>
+      
+    </div>
+  </div>
 </div>
 
-<%= yield %>
-
-<div>
-<footer style="border: 1px solid">
+<div class="container">
+	<%= yield %>
+</div>
 	
-	<p><%=link_to "Sugerencias", sugerencia_nuevo_path%></p>
-</footer>
+
+<div class="navbar navbar-fixed-bottom navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">     
+      <a class="btn btn-navbar " data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+      </a>
+      
+       <div class="navbar-search pull-right"> Copyright 2012 Laura</div>
+      <div class="nav-collapse">
+        <ul class="nav">
+     		<li><%=link_to "Sugerencias", sugerencia_nuevo_path%></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+      
 </div>
+
+
 </body>
 </html>

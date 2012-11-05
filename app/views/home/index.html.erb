@@ -1,66 +1,54 @@
-<style type="text/css">
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      #map_canvas { height: 50% }
-</style>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD8gL6_aJgnL_j24LpiIMk-OTBSRIot9K4&sensor=false" ></script>
-
-
-<h1>Aplicación para eventos con javascript</h1><br />
-
-<h3><%= Date.today %></h3>
-<br />
-<br />
-<div id="panel-izq">
-	Panel izquierdo
-	<ul>
-		<li><%= link_to "Ciudades", ciudades_path %></li>
-		<li><%= link_to "Eventos", eventos_list_path %></li>
-		<li><%= link_to "Categorias", categorias_path %></li>
-		<li><%= link_to "Fechas/Calendario", fechas_list_path %></li>
-	</ul>
+<div class="hero-unit">
+  <h1>Presentacion del proyecto</h1>
+  <p>Una no muy grande explicacion de que se trata<br />
+  	La foto de un raton sonriente<br />
+  	Y un boton para que me lleve a un tour en imagenes
+  </p>
+  <br />
+  <p>
+    <a class="btn btn-primary btn-large">
+      Learn more
+    </a>
+  </p>
 </div>
-<hr />
-<div id="Panel central" >
-	Panel central
-	
+
+<div class="row">
+	<div class="span12" align="center">
+		<h3>Descubre que esta pasando en tu ciudad</h3>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span3">
+		<select id="ciudad-id" onchange="hola()">
+				<% @ciudades_list.each do |ca| %>
+					<option value=<%= ca.id %>><%= ca.nombre %></option>
+				<% end %>
+		</select>
+		<br />
+		<br />
 	<% if current_usuario != nil %>
-		<h3>Conectado</h3>
-		<%= link_to "Agregar evento!", evento_nuevo_path %>
+		<h3>Estas conectado</h3>
+		<div class="btn"><%= link_to "Agrega un evento!", evento_nuevo_path %></div>
 	<%else %>
-		<h3>Desconectado</h3>
+		<h3>Se parte de la comunidad para agregar tu mismo los eventos!!</h3>
 		
 	<% end %>
-	<br />
-	<br />
-	
+	</div>
+	<div class="span9">
+		<div id="map_canvas"  style="width:800px; height:500px; border: 5px solid"></div>
+	</div>
 </div>
-<br />
+
 
 <!---Descubre que esta pasando es tu ciudad! <br />
 <button onclick="localizarUser()">Localizame!</button>--->
 
-Vamos a ver!
-<select id="ciudad-id" onchange="hola()">
-<% @ciudades_list.each do |ca| %>
-	<option value=<%= ca.id %>><%= ca.nombre %></option>
-<% end %>
-</select>
-<div id="map_canvas" style="width:50%; height:50%; border: 5px solid"></div>
-<br />
-<br />
-<hr />
-
-
-
-<div id="panel-derecho">
-	Panel derecho
-	Desplegar info tiempo real de actualizaciones/Eventos pagados
-</div>
 
 <br />
 <br />
 <hr />
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD8gL6_aJgnL_j24LpiIMk-OTBSRIot9K4&sensor=false" ></script>
 <script type="text/javascript">
 $(document).ready(function()
 { 
@@ -112,6 +100,7 @@ function hola(){
 function actualizarEventos(value)
 {
 	var direccion = '/servicios/ciudad_evento.json?id='+value;
+	
 	
 		$.getJSON(direccion,function(json)
 		{	
