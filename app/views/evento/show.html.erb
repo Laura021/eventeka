@@ -38,9 +38,8 @@ Rating: 0/5 estrellas
 		var latitud  = <%= @eventos_detail.latitud %>;
 		var longitud = <%= @eventos_detail.longitud %>;
 		
-		//initialize();
-		cargarMapa(latitud, longitud);
-		console.log(latitud +","+ longitud);
+		createMap(latitud,longitud);
+		loadMarker(latitud,longitud,false);
 	});
 
 </script>

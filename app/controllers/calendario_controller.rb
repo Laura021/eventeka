@@ -4,6 +4,8 @@ class CalendarioController < ApplicationController
     #Mostrar todos los eventos ordenados por fecha
     @eventos_fecha = Evento.all.asc(:fecha)
     
+    #Guardarlos en un formato que me deje  mostrarlos bonitos al rato. 
+    
     @fecha_base = @eventos_fecha.first
     
   end

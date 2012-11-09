@@ -26,11 +26,14 @@ gem 'bson'
 gem 'bson_ext'
 gem 'devise'
 gem 'activeadmin-mongoid', git: "git://github.com/elia/activeadmin-mongoid.git"
+
 gem 'mongoid'
 gem 'cancan'
 gem 'activeadmin-cancan'
 gem 'meta_search'
 gem 'thin'
+
+#gem "activeadmin-mongoid", "~> 0.0.2.jpmckinney.0"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

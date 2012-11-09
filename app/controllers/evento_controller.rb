@@ -14,20 +14,27 @@ class EventoController < ApplicationController
   end
   
   def nuevo
+   
+   if current_usuario == nil 
+     redirect_to root_path
+   end 
+
     @evento = Evento.new
   end
   
   def editar
-    @evento = Evento.find(params[:id])
-    
+   @evento = Evento.find(params[:id])
+   
+   if current_usuario.email != @evento.usuario.email
+     redirect_to root_path
+   end 
+ 
   end
   
   def update
     @evento = Evento.find(params[:id])
     @evento.update_attributes(params[:evento])
-    #Evento.find(params[:id]).update_attributes(params[:evento])  
-    
-    #Evento.update params[:evento]
+
     redirect_to :action => 'index'
     
     

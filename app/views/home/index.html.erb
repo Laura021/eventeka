@@ -50,40 +50,12 @@
 <hr />
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD8gL6_aJgnL_j24LpiIMk-OTBSRIot9K4&sensor=false" ></script>
 <script type="text/javascript">
-$(document).ready(function()
-{ 
-	/*var lat = "null", lon = "null", ciudad="null";
-	var direccion = "http://smart-ip.net/geoip-json?callback=?";
-	//console.log("Valor: " + direccion);
-	
-	$.getJSON(direccion,function(json)
-	{
-		//console.log("Hello there")
-		//console.log(json);
-		 lat =  json.latitude;
-		 lon =  json.longitude;
-		 ciudad= json.city;		
-		ponerCiudad(ciudad)
-		cambiaCiudad(lat,lon);
-	});// fin del get
-	
-	function ponerCiudad(nombre)
-	{
-		$("#ciudad").append(nombre);
-	}*/
-	//actualizarEventos("504fad7910cec3dc0d000001");
 
-	//Ahora se supone que cuando incie sesion el usaurio no debe mostrar nada hasta que el escoja su ciudad!
-	//¿guardar las preferencias del usuario?
-	
-})
 
 function hola(){
 	var value = $("#ciudad-id :selected").val();
 	var direccion = '/servicios/ciudad_detail.json?id='+value;
 	var lat = "null", lon = "null";
-	
-	//console.log("Valor: " + direccion)
 	
 	$.getJSON(direccion,function(json)
 	{
@@ -91,7 +63,8 @@ function hola(){
 		var lat =  json.latitud;
 		var lon =  json.longitud;
 		
-		cambiaCiudad(lat,lon);
+		//cambiaCiudad(lat,lon);
+		createMap(lat,lon);
 	});// fin del get
 	
 	actualizarEventos(value);
@@ -108,13 +81,13 @@ function actualizarEventos(value)
 			{
 				var lat =  post.latitud;
 				var lon =  post.longitud;
-				console.log(lat +" , "+lon);
-				
-				marker =  new google.maps.Marker({
-        		map: map,
-        		position: new google.maps.LatLng(lat,lon),
-        		draggable: false
-        });
+				var texto = post.nombre;
+				var id = post.id;
+				var link = '/eventos/' + post._id;
+				//var evento_id = post.id;
+							
+				//console.log(link);					
+				createMarkerInfo(lat,lon,texto,link,false);
 			});
 		});
 	

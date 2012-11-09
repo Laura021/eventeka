@@ -35,6 +35,7 @@
 	<%= e.submit%>
 <% end %>
 
+<a href="#" onclick="verMarker()">Ver marker </a>
 <div id="map_canvas" style="width:500px; height:500px; border: 5px solid"></div>
 
 <script type="text/javascript">
@@ -44,8 +45,10 @@ $(document).ready(function(){
 	var longitud = <%= @evento.longitud %>;
 		
 	//initialize();
-	editarMapa(latitud, longitud);
-	hola();
+	//editarMapa(latitud, longitud);
+	//hola();
+	createMap(latitud,longitud);
+	loadMarker(latitud,longitud,true);
 	console.log(latitud +","+ longitud);
 });
 
@@ -63,13 +66,15 @@ function hola()
 		var lat =  json.latitud;
 		var lon =  json.longitud;
 		
-		cambiaCiudad(lat,lon);
+		createMap(lat,lon);
+		loadMarker(lat,lon,true);
+		
 	});// fin del get
 }
 
 function verMarker()
 {
-	var dir= markerPosition();
+	var dir= getMarkerPosition();
 	
 	$("#evento_latitud").val(dir[0]);
 	$("#evento_longitud").val(dir[1]);

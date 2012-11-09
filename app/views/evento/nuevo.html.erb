@@ -1,10 +1,4 @@
-<style type="text/css">
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
-      #map_canvas { height: 50% }
-</style>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD8gL6_aJgnL_j24LpiIMk-OTBSRIot9K4&sensor=false" ></script>
-
 
 <h1>Evento#nuevo</h1>
 
@@ -39,7 +33,7 @@
 	<%= e.submit%>
 <% end %>
 
-<div id="map_canvas" style="width:50%; height:50%; border: 5px solid"></div>
+<div id="map_canvas" style="width:500px; height:500px; border: 5px solid"></div>
 
 <script type="text/javascript">
 function hola(){
@@ -55,13 +49,15 @@ function hola(){
 		var lat =  json.latitud;
 		var lon =  json.longitud;
 		
-		cambiaCiudad(lat,lon);
+		createMap(lat,lon);
+		createMarker(lat,lon,true);
+		
 	});// fin del get
 }
 
 function verMarker()
 {
-	var dir= markerPosition();
+	var dir= getMarkerPosition();
 	
 	$("#evento_latitud").val(dir[0]);
 	$("#evento_longitud").val(dir[1]);

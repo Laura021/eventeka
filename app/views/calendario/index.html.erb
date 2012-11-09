@@ -1,20 +1,51 @@
 <h1>Calendario#index</h1>
 
-<b> <%= @fecha_base.fecha.to_date %></b><br />
+
+<% @mes_nombre =  Date::MONTHNAMES[@fecha_base.fecha.month] %>
+
+<div id="calendario-total" class="row"> <a class="span12 btn btn-large disabled" ><%= @mes_nombre %></a> </div><br />
+
+Dia:<%= @fecha_base.fecha.day %><br />
 
 <% @eventos_fecha.each do |evento|%>
 
-	<%if @fecha_base.fecha.to_date == evento.fecha.to_date %>
-		<%= link_to evento.nombre, evento_detail_path(:id => evento.id) %><br />
-	<%else %>
-		<br />
-		<b><%= evento.fecha.to_date %></b><br />
-		<%= link_to evento.nombre, evento_detail_path(:id => evento.id) %><br />
+	<% if @fecha_base.fecha.month  !=  evento.fecha.month %>
+	<div id="calendario-total" class="row"> <a class="span12 btn btn-large disabled" ><%= Date::MONTHNAMES[evento.fecha.month] %></a> </div><br />
+	
+		Dia: <%= evento.fecha.day %><br />
 		<% @fecha_base = evento %>
+	<% end%>
+	
+	
 		
-	<% end %>
+	<%if @fecha_base.fecha.day != evento.fecha.day %>	
+		Dia: <%= evento.fecha.day %><br />
+		<% @fecha_base = evento %>
+	<% end %>	
+		<%= link_to evento.nombre, evento_detail_path(:id => evento.id) %><br />
+		
+<% end %>
 	
 
-<% end %>
+
+<div id="calendario-total" class="row"> <a class="span12 btn btn-large disabled" ><%= @mes_nombre %></a> </div><br />
+
+
+
+
+
+<div id="dia" class="row"> 
+	<a class="span2 btn btn-large disabled" ><h2>10</h2> Contenido <br />Contenido</a>
+	<a class="span2 btn btn-large disabled" >Martes</a>
+	<a class="span2 btn btn-large disabled" >Miercoles</a>
+	<a class="span2 btn btn-large disabled" >Jueves</a>
+	<a class="span2 btn btn-large disabled" >Viernes</a>
+
+</div> <br />
+
+
+<div id="calendario-total" class="row"> <a class="span12 btn btn-large disabled" >Pie del calendario</a> </div>	<br />
+
+<a class="span2 btn btn-large disabled" ><h2>10</h2> Contenido <br />Contenido</a>
 
 
