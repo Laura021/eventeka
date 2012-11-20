@@ -1,6 +1,7 @@
 GIT
   remote: git://github.com/elia/activeadmin-mongoid.git
-  revision: e7b874431a6deb14ef46a4de3a67bad980a0ca0d
+  revision: d3d05ee9f005a01b7e19b4a5c98ee912f4e5a263
+  ref: d3d05ee9f005a01b7e19b4a5c98ee912f4e5a263
   specs:
     activeadmin-mongoid (0.0.1)
       activeadmin (~> 0.4)

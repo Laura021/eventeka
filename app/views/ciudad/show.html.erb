@@ -1,14 +1,29 @@
 <h1>Ciudades#show</h1>
 
 <h3><%= @ciudad_detail.nombre %></h3>
-<b>Detalles de la ciudad</b><br/><br />
-Latitud: <%= @ciudad_detail.latitud%><br />
-Longitud: <%= @ciudad_detail.longitud%><br /><br />
-<i>Mapa aqui</i><br />
-<br />
-<b>Evento relacionados</b><br />
-<% @eventos_ciudad.each do |ec| %><br />
-<%= link_to ec.nombre, evento_detail_path(:id => ec.id)  %>
-<% end %>
+
+
+
+<div class="row">
+	<div class="span12">
+		<img class="img-rounded" src="http://lorempixel.com/1000/200/city/"/>
+	</div>	
+</div>
+
+<h3>Evento relacionados</h3>
+<table  class="table table-striped">
+	<tr>
+		<th>Fecha</th>
+		<th>Nombre</th>
+		<th>Direccion</th>
+	</tr>
+	<% @eventos_ciudad.each do |ec| %>
+	<tr>
+		<td><%= ec.fecha %></td>
+		<td><%= link_to ec.nombre, evento_detail_path(:id => ec.id)  %></td>
+		<td><%= ec.direccion %></td>
+	</tr>
+	<% end %>
+</table>
 
 

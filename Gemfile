@@ -25,7 +25,10 @@ gem 'rb-readline'
 gem 'bson'
 gem 'bson_ext'
 gem 'devise'
-gem 'activeadmin-mongoid', git: "git://github.com/elia/activeadmin-mongoid.git"
+#gem 'activeadmin-mongoid', git: "git://github.com/elia/activeadmin-mongoid.git"
+gem 'activeadmin-mongoid',  git: 'git://github.com/elia/activeadmin-mongoid.git', ref: 'd3d05ee9f005a01b7e19b4a5c98ee912f4e5a263'
+
+
 
 gem 'mongoid'
 gem 'cancan'

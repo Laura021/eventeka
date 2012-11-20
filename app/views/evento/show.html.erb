@@ -16,13 +16,15 @@
 		<img src="http://lorempixel.com/300/400/nightlife/" />
 	</div>
 	<div class="span8">
+		
+		<b>Fecha:</b> <%= @eventos_detail.fecha%><br /><br />
 		<b>Nombre:  </b> <%= @eventos_detail.nombre %><br /><br />
 		<b>Descripcion:</b> <%= @eventos_detail.descripcion %><br /><br />
-		<b>Fecha:</b> <%= @eventos_detail.fecha%><br /><br />
-		<b>Lugar: </b><%= @eventos_detail.ciudad.nombre %><br /><br />
-		<b>Latitud: </b><%= @eventos_detail.latitud %><br /><br />
-		<b>Longitud: </b><%= @eventos_detail.longitud %><br /><br />
-		<i>Más detalles del evento...</i>
+		<b>Direccion:</b><%= @eventos_detail.direccion %><br /><br />
+		<b>Ciudad: </b><%= @eventos_detail.ciudad.nombre %><br /><br />
+		<b>Website:</b><%= @eventos_detail.website %><br /><br />
+
+		<i>Usuario que lo creo?...</i>
 	</div>
 </div>
 

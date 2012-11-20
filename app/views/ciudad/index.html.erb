@@ -1,10 +1,13 @@
 <h1>Vista de controller de ciudades#index</h1>
 
-<ul>
-<%@ciudades.each do |c| %>
-	<li><%= link_to c.nombre,ciudad_detail_path(:id => c.id) %></li>
-<% end %>
-</ul>
+<div class="well">
+	<ul>
+	<%@ciudades.each do |c| %>
+		<li><%= link_to c.nombre,ciudad_detail_path(:id => c.id) %></li>
+	<% end %>
+	</ul>
+</div>
+
 <br />
 <br />
 <i>Cada ciudad debe llevar a los evento que correspondan a la ciudad</i>

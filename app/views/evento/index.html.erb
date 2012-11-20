@@ -1,9 +1,10 @@
 <h1>Eventos#index</h1>
 
 <ul>
+<div class="well">
 <% @eventos.each do |e| %>
 	<li><%= link_to e.nombre,evento_detail_path(:id => e.id) %></li>
 <% end %>
 
-
+</div>
 </ul>

@@ -1,16 +1,31 @@
 <h1>Categoria#show</h1>
 
-<b>Detalles de la categoria</b>
-<br />
-<br />
-<i>Nombre: </i><%= @categoria_detail.nombre %><br />
-<i>Descripcion : </i><%= @categoria_detail.descripcion %><br />
-<br />
-<br />
-<b>Eventos relacionados: </b><br />
+<h3>
+<%= @categoria_detail.nombre %>
+</h3>
 
-<ul>
+<div class="row">
+	<div class="span12">
+		<img class="img-rounded" src="http://lorempixel.com/1000/200/sports/"/>
+	</div>	
+</div>
+
+
+<h3>Evento relacionados</h3>
+<table  class="table table-striped">
+	<tr>
+		<th>Fecha</th>
+		<th>Nombre</th>
+		<th>Direccion</th>
+		<th>Ciudad</th>
+	</tr>
 	<%  @eventos_categoria.each do |eca |%>
-		<li><%= link_to eca.nombre, evento_detail_path(:id => eca.id) %></li>	
+	<tr>
+		<td><%= eca.fecha %></td>
+		<td><%= link_to eca.nombre, evento_detail_path(:id => eca.id) %></td>
+		<td><%= eca.direccion %></td>
+		<td><%= eca.ciudad.nombre%></td>
+	</tr>
 	<% end %>
-</ul>
+</table>
+

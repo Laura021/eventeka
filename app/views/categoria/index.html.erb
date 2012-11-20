@@ -1,8 +1,10 @@
 <h1>Categorias#index</h1>
-<ul>
-<% @categorias.each do |ca|%>
 
-<li><%= link_to ca.nombre, categoria_detail_path(:id => ca.id) %></li>
+<div class="well">
 
-<% end %>
-</ul>
+	<ul>
+	<% @categorias.each do |ca|%>
+		<li><%= link_to ca.nombre, categoria_detail_path(:id => ca.id) %></li>
+	<% end %>
+	</ul>
+</div>
