@@ -7,8 +7,17 @@ class HomeController < ApplicationController
   def sugerencias
     
   end
+  
+  def soon
+   @registro = Preregistro.new
+  
+  end
 
-
+  def registrar
+     @registro = Preregistro.create params[:registro]
+    redirect_to root_path
+  end
+    
 
 
 

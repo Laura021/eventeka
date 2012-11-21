@@ -7,7 +7,8 @@ Consola::Application.routes.draw do
   devise_for :usuarios
 
   #My routes
-  
+  match "/soon" => "home#soon"
+
   match "ciudades" => "ciudad#index"
   match "ciudades/:id" => "ciudad#show", :as => :ciudad_detail
  
