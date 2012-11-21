@@ -8,7 +8,8 @@ Consola::Application.routes.draw do
 
   #My routes
   match "/soon" => "home#soon"
-
+  match "/soon/register" => "home#registrar", :as => :preregistrar
+  
   match "ciudades" => "ciudad#index"
   match "ciudades/:id" => "ciudad#show", :as => :ciudad_detail
  

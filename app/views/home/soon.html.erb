@@ -37,6 +37,13 @@ body {
 		<div class="well greenbg"><h4 style="color: white; text-align: center">Trabajo en Eventeka</h4></div>
 		<div class="well bluebg"><h4 style="color: white; text-align: center">Te diré cuando este listo</h4></div>
 		
+
+		
+		<%= form_for @registro, :html=> {:method =>"get",:action =>"preregistrar_path"} do |p| %>
+			<%= e.text_field :email %>
+			<%= e.submit%>
+		<% end %>
+		
 		<form class="form-search" method="get" action="">
 			 <input type="text" class="input-medium search-query"  placeholder="Email">
 			<button type="submit" class="btn">Sí dime!</button>

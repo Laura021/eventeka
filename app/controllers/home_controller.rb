@@ -9,13 +9,13 @@ class HomeController < ApplicationController
   end
   
   def soon
-   @registro = Preregistro.new
+    @registro = Preregistro.new
   
   end
 
   def registrar
-     @registro = Preregistro.create params[:registro]
-    redirect_to root_path
+   #  @registro = Preregistro.create params[:registro]
+    #redirect_to root_path
   end
     
 
