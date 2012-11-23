@@ -38,13 +38,13 @@ body {
 		<div class="well bluebg"><h4 style="color: white; text-align: center">Te diré cuando este listo</h4></div>
 		
 
-		<%= form_for @registro,:html => {:method => "get"}, :url => {:action => :registrar} do |e| %>		
-			<%= e.text_field :email   %>
+		<%= form_for @registro,:html => {:method => "get",:class=> "form-search" }, :url => {:action => :registrar} do |e| %>		
+			<%= e.text_field :email, :class => "input-medium search-query",  :placeholder => "email"   %>
 			<%= e.hidden_field :fecha, :value=> Time.now.to_formatted_s(:db)%>
-			<%= e.submit %>
+			<%= e.submit "Si dime!", :class => "btn" %>
 		<% end %>
 		
-		
+
 	</div>
 </div>
 

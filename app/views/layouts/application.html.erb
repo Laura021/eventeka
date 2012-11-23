@@ -11,7 +11,8 @@
 </head>
 <body>
 
-<%if request.fullpath != "/soon" %>
+<!-- acuerdate de quitarle esta restriccion a la nav bar !-->
+<%if request.fullpath != "/" && request.fullpath != "/done"  %>
 <div class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
@@ -65,11 +66,16 @@
       </a>
       
        <div class="navbar-search pull-right"> Copyright 2012 Laura</div>
-      <div class="nav-collapse">
+      
+      <!-- acuerdate de quitarle esta restriccion a la nav bar !-->
+      <%if request.fullpath != "/" && request.fullpath != "/done"  %>
+      <div class="nav-collapse">   
         <ul class="nav">
      		<li><%=link_to "Sugerencias", sugerencia_nuevo_path%></li>
         </ul>
       </div>
+    <% end %>
+    
     </div>
   </div>
       

@@ -7,8 +7,13 @@ Consola::Application.routes.draw do
   devise_for :usuarios
 
   #My routes
-  match "/soon" => "home#soon"
+  #match "/soon" => "home#soon"
   match "/soon/register" => "home#registrar", :as => :preregistrar
+  match "done" => "home#done"
+  
+  #temporal
+  match "entradasecreta" => "home#index"
+  
   
   match "ciudades" => "ciudad#index"
   match "ciudades/:id" => "ciudad#show", :as => :ciudad_detail
@@ -104,8 +109,10 @@ Consola::Application.routes.draw do
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
 
-  root :to => 'home#index'
 
+  #temporal tambien
+  #root :to => 'home#index'
+  root :to => "home#soon"
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

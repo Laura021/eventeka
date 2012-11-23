@@ -19,7 +19,7 @@ $(document).ready(function(){
 
 	//Control de acciones segun la página en que se esta ejecutando.
 
-	if(where == '/' )
+	if(where == '/' || where == '/entradasecreta')
 	{
 		createMap(lat,lon);
 	}else if(where == '/evento/nuevo')
