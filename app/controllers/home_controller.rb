@@ -14,8 +14,8 @@ class HomeController < ApplicationController
   end
 
   def registrar
-   #  @registro = Preregistro.create params[:registro]
-    #redirect_to root_path
+    @registro = Preregistro.create params[:preregistro]
+    redirect_to root_path
   end
     
 
